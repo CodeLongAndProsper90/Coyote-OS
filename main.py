@@ -21,7 +21,7 @@ def cdls():
    /     /-'`  `\   \  \-.\
 	"""
 	def get_os():
-			plat = platform.system()
+		plat = platform.system()
 		if plat == 'Linux':
 			return 'linux'
 		elif plat == 'Darwin':
@@ -35,12 +35,6 @@ def cdls():
 			system('clear')
 		else:
 			system('cls')
-	def lock(filename):
-		from os import system
-		system(f'chmod -r {filename}')
-	def ulock(filename):
-		from os import system
-		system(f'chmod +r {filename}')
 
 	def get_settings(filename):
 		from ast import literal_eval
