@@ -1,10 +1,14 @@
+from time import sleep
+from colorama import Fore, Style
+from termcolor import colored
+import platform
+from os import system
+from getch import getch
+import hashlib
+from ast import literal_eval
 def cdls():
-	from time import sleep
-	from termcolor import colored
-	import platform
-	from os import system
-	from getch import getch
-	eme = False
+
+
 	#Definintons for bootloader and CDLS [Coyote Data Load System]
 	logo = """
 	            .-'''''-.
@@ -30,6 +34,7 @@ def cdls():
 			return  'nt'
 
 	def clear():
+		pass
 		os = get_os()
 		if os == 'linux' or os == 'mac':
 			system('clear')
@@ -37,7 +42,6 @@ def cdls():
 			system('cls')
 
 	def get_settings(filename):
-		from ast import literal_eval
 		#ulock(filename)
 		with open(filename,'r') as inf:
 			settings = literal_eval(inf.read())
@@ -45,7 +49,8 @@ def cdls():
 		return settings
 	#Begin actual code execution
 	clear()
-	print(colored(logo, 'cyan'))
+	print(Fore.CYAN, logo)
+	print(Style.RESET_ALL)
 	print("Welcome to Coyote.")
 	print("Press any key to log in")
 	key = ''
@@ -57,41 +62,45 @@ def cdls():
 		
 
 	time = 0.3
-	version = '1.0.0'
+	version = '2.5.0'
 	clear()
-	#Define users and passwords from our settings file
+	while True:
+		clear()
 
-	#Get the users username
-	print(colored(logo, 'green'))
-	user = input(colored("Username ", "green"))
-	try:
-		settings = get_settings(f'{user}.ledger')
+		print(colored(logo, 'green'))
+		user = input(colored("Username ", "green"))
+		try:
+			settings = get_settings(f'{user}.ledger')
 
-	except:
-		print('Ooops.')
-		print('\n')
-		print(f'We could not find your ledger file. It should be named: {user}.ledger')
-		sleep(time)
-		print('Loading default configuration')
-		settings = get_settings('def.ledger')
-		eme = True
-	clear()	
-	use = settings['username']
-	pas = settings['password']
-
-	#Check for username and password
-	print(colored(logo, 'red'))
-	password = input(colored('Password ', 'red'))
-	if user == use:
-		if password == pas:
-			#clear screen 
-			clear
+		except:
+			print('Ooops.')
+			print("Invalid username. Press ENTER to continue")
+			getch()
+			continue
 
 
-	else:
+		use = settings['username']
+		pas = settings['password']
 
-		print("You are not in the list of Comrades!")
-		exit()
+		#Check for username and password
+		clear()
+		print(colored(logo, 'red'))
+		hash  = hashlib.sha256()
+		paas = input( Fore.RED + 'Password ' + Style.RESET_ALL ).encode()
+		print(Style.RESET_ALL)
+		hash.update(paas)
+		if user == use:
+			if hash.hexdigest() == pas:
+				#clear screen
+				break
+
+
+			else:
+
+				print("I'm sorry, I'm afraid I can't let you do that.")
+				print("Press ENTER to retry.")
+				getch()
+				continue
 
 	clear()
 	sleep(time)
@@ -101,14 +110,17 @@ def cdls():
 		import coyote
 	except ImportError:
 		print("Primary kernel not found. Coyote cannot boot.")	
-	if eme == True:
-		print("Warning! Using default config. U: Cinco. P:Coyote. Pleaes use \"Config\" to fix the problem")
 	print('Loading Coyote kernel ')
 	sleep(time*2)
 	print(f'Version {version}')
 	sleep(time/2)
 	#Start kernel
-	coyote.os(settings, user, logo, get_os())
+	try:
+		coyote.os(settings, user, logo)
+	except:
+		print("Fatal Error. Abort.")
+		raise
 	cdls()
 cdls()
 	
+

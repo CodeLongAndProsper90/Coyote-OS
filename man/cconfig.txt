@@ -1,0 +1,6 @@
+Manual page for cconfig:
+
+Usage: cconfig
+
+cconfig invokes the coyote configuaration tool. This is the default way to change user settings or to add/remove users.
+

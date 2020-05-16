@@ -1,0 +1,5 @@
+Manual page for ls:
+
+Usage: ls [directory]
+
+ls [l]i[s]ts all files in the current directory, if called without an argument, or, if called with an argument, lists the specified directory.

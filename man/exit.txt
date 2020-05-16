@@ -1,0 +1,7 @@
+Manual page for exit:
+
+Usage: exit
+
+exit makes a system call to save the current settings, and then exits Coyote OS.
+
+exit takes no arguments.

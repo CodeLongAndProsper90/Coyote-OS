@@ -1,0 +1,5 @@
+Manual page for cat
+
+Usage: cat [file]
+
+Cat reads the supplied file, and prints the file to standard output.

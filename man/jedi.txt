@@ -1,0 +1,16 @@
+Manual page for JEDI.
+
+Usage: jedi [file to edit]
+
+About: Jedi was written by scott little for the GNU+Linux operating system, and ported to Coyote. Jedi is a line editor.
+
+Jedi will start an interactive process, and open the prompt '*'
+Syntax errors in a command will not be raised. Jedi will respond to unknown commands with '?'
+
+Commands:
+a: append at current posisition
+w: write to disk
+q: quit
+l: list file
+p: print line
+[any integer]: go to line

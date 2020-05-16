@@ -1,0 +1,4 @@
+Manual page for mkdir
+mkdir [dir]
+
+[m]a[k]e [dir]ectory will create an empty directory with the name argv[1].

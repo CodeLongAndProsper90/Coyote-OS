@@ -1,0 +1,7 @@
+Manual page for man 
+man [topic]
+
+Man looks in the man folder for topic.txt, where topic is argv[1]
+If man finds the topic, man will print it to standard output.
+Otherwise, man will exit.
+Man will now stop talking about itself in the third person.

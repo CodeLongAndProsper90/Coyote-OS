@@ -1,0 +1,5 @@
+Manual page for logout:
+
+Usage: logout
+
+Logout will exit the current user's session, and return to the login prompt.

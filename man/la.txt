@@ -1,0 +1,5 @@
+Manual page for la:
+
+la [dir]
+
+la [l]ists [a]ll files in a dir, not excluding files taht begin with .

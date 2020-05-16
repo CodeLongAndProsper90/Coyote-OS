@@ -1,0 +1,4 @@
+VERSION: 2.0.0
+CODENAME: Canidae
+PLATFORM: repl.it
+NAME: Coyote OS Version Two
